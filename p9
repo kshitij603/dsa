@@ -16,6 +16,7 @@ void linearSearch(int a[], int n, int key)
     cout << "Element not found\n";
 }
 
+
 void binarySearch(int a[], int n, int key)
 {
     int low = 0;
