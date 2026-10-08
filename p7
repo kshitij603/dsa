@@ -1,0 +1,200 @@
+//Implement Double Linked Lists and its operations: creation, insertion, deletion, traversal, search, reverse
+#include <iostream>
+using namespace std;
+
+struct Node
+{
+    int data;
+    Node *prev;
+    Node *next;
+};
+
+Node *head = NULL;
+
+void create()
+{
+    int n, value;
+
+    cout << "Enter number of nodes: ";
+    cin >> n;
+
+    for (int i = 0; i < n; i++)
+    {
+        cout << "Enter value: ";
+        cin >> value;
+
+        Node *newNode = new Node;
+        newNode->data = value;
+        newNode->prev = NULL;
+        newNode->next = NULL;
+
+        if (head == NULL)
+        {
+            head = newNode;
+        }
+        else
+        {
+            Node *temp = head;
+
+            while (temp->next != NULL)
+            {
+                temp = temp->next;
+            }
+
+            temp->next = newNode;
+            newNode->prev = temp;
+        }
+    }
+}
+
+void insert()
+{
+    int value, pos;
+
+    cout << "Enter value to insert: ";
+    cin >> value;
+
+    cout << "Enter position: ";
+    cin >> pos;
+
+    Node *newNode = new Node;
+    newNode->data = value;
+    newNode->prev = NULL;
+    newNode->next = NULL;
+
+    if (pos == 1)
+    {
+        newNode->next = head;
+
+        if (head != NULL)
+        {
+            head->prev = newNode;
+        }
+
+        head = newNode;
+        return;
+    }
+
+    Node *temp = head;
+
+    for (int i = 1; i < pos - 1; i++)
+    {
+        temp = temp->next;
+    }
+
+    newNode->next = temp->next;
+    newNode->prev = temp;
+
+    if (temp->next != NULL)
+    {
+        temp->next->prev = newNode;
+    }
+
+    temp->next = newNode;
+}
+
+void deletion()
+{
+    int pos;
+
+    cout << "Enter position to delete: ";
+    cin >> pos;
+
+    Node *temp = head;
+
+    if (pos == 1)
+    {
+        head = head->next;
+
+        if (head != NULL)
+        {
+            head->prev = NULL;
+        }
+
+        delete temp;
+        return;
+    }
+
+    for (int i = 1; i < pos; i++)
+    {
+        temp = temp->next;
+    }
+
+    temp->prev->next = temp->next;
+
+    if (temp->next != NULL)
+    {
+        temp->next->prev = temp->prev;
+    }
+
+    delete temp;
+}
+
+void traverse()
+{
+    Node *temp = head;
+
+    cout << "Linked List: ";
+
+    while (temp != NULL)
+    {
+        cout << temp->data << " ";
+        temp = temp->next;
+    }
+
+    cout << endl;
+}
+
+void search()
+{
+    int value, pos = 1;
+    bool found = false;
+
+    cout << "Enter value to search: ";
+    cin >> value;
+
+    Node *temp = head;
+
+    while (temp != NULL)
+    {
+        if (temp->data == value)
+        {
+            cout << "Element found at position " << pos << endl;
+            found = true;
+            break;
+        }
+
+        temp = temp->next;
+        pos++;
+    }
+
+    if (found == false)
+    {
+        cout << "Element not found\n";
+    }
+}
+
+void reverse()
+{
+    Node *temp = NULL;
+    Node *curr = head;
+
+    while (curr != NULL)
+    {
+        temp = curr->prev;
+        curr->prev = curr->next;
+        curr->next = temp;
+
+        curr = curr->prev;
+    }
+
+    if (temp != NULL)
+    {
+        head = temp->prev;
+    }
+}
+
+int main()
+{
+    
+}
