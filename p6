@@ -8,6 +8,7 @@ struct Node
     Node *next;
 };
 
+
 Node *head = NULL;
 
 void create()
