@@ -9,6 +9,7 @@ int v = 6;
 vector<vector<int>> adjList(v);
 vector<vector<int>> adjMatrix(v, vector<int>(v, 0));
 
+
 void addEdge(int u, int w)
 {
     adjMatrix[u][w] = 1;
