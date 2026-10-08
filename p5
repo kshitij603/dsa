@@ -4,6 +4,7 @@ using namespace std;
 
 #define MAX 100
 
+
 int queue[MAX];
 int front = -1;
 int rear = -1;
