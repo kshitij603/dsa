@@ -1,0 +1,154 @@
+// Implement Stack and its operations like creation, push, pop, traverse, peek, search using linear data structure
+#include <iostream>
+using namespace std;
+
+#define MAX 100
+
+int stack[MAX];
+int top = -1;
+
+void push()
+{
+    int value;
+
+    if (top == MAX - 1)
+    {
+        cout << "Stack Overflow\n";
+    }
+    else
+    {
+        cout << "Enter value: ";
+        cin >> value;
+
+        top++;
+        stack[top] = value;
+
+        cout << "Element pushed successfully\n";
+    }
+}
+
+void pop()
+{
+    if (top == -1)
+    {
+        cout << "Stack Underflow\n";
+    }
+    else
+    {
+        cout << "Deleted element: " << stack[top] << endl;
+        top--;
+    }
+}
+
+void traverse()
+{
+    if (top == -1)
+    {
+        cout << "Stack is empty\n";
+    }
+    else
+    {
+        cout << "Stack elements are:\n";
+
+        for (int i = top; i >= 0; i--)
+        {
+            cout << stack[i] << " ";
+        }
+
+        cout << endl;
+    }
+}
+
+void peek()
+{
+    if (top == -1)
+    {
+        cout << "Stack is empty\n";
+    }
+    else
+    {
+        cout << "Top element is: " << stack[top] << endl;
+    }
+}
+
+void search()
+{
+    int value;
+    bool found = false;
+
+    if (top == -1)
+    {
+        cout << "Stack is empty\n";
+        return;
+    }
+
+    cout << "Enter element to search: ";
+    cin >> value;
+
+    for (int i = top; i >= 0; i--)
+    {
+        if (stack[i] == value)
+        {
+            cout << "Element found at position " << i + 1 << endl;
+            found = true;
+            break;
+        }
+    }
+
+    if (found == false)
+    {
+        cout << "Element not found\n";
+    }
+}
+
+int main()
+{
+    int choice;
+
+    do
+    {
+        cout << "\n----- STACK OPERATIONS -----\n";
+        cout << "1. Push\n";
+        cout << "2. Pop\n";
+        cout << "3. Traverse\n";
+        cout << "4. Peek\n";
+        cout << "5. Search\n";
+        cout << "6. Exit\n";
+
+        cout << "Enter your choice: ";
+        cin >> choice;
+
+        switch (choice)
+        {
+        case 1:
+            push();
+            break;
+
+        case 2:
+            pop();
+            break;
+
+        case 3:
+            traverse();
+            break;
+
+        case 4:
+            peek();
+            break;
+
+        case 5:
+            search();
+            break;
+
+        case 6:
+            cout << "Program ended\n";
+            break;
+
+        default:
+            cout << "Invalid choice\n";
+        }
+
+    } while (choice != 6);
+
+    return 0;
+}
